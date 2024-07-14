@@ -1,6 +1,6 @@
 steps:
   #orders
-  - name: 'grc.io/cloud-builders/docker'
+  - name: 'gcr.io/cloud-builders/docker'
     args:
       [
         'build',
@@ -10,12 +10,12 @@ steps:
         'apps/orders/Dockerfile',
         '.',
       ]
-  - name: 'grc.io/cloud-builders/docker'
+  - name: 'gcr.io/cloud-builders/docker'
     args:
       ['push', 'asia-southeast1-docker.pkg.dev/cat-424106/orders/production']
 
   #payments
-  - name: 'grc.io/cloud-builders/docker'
+  - name: 'gcr.io/cloud-builders/docker'
     args:
       [
         'build',
@@ -25,12 +25,12 @@ steps:
         'apps/payments/Dockerfile',
         '.',
       ]
-  - name: 'grc.io/cloud-builders/docker'
+  - name: 'gcr.io/cloud-builders/docker'
     args:
       ['push', 'asia-southeast1-docker.pkg.dev/cat-424106/payments/production']
 
   #notifications
-  - name: 'grc.io/cloud-builders/docker'
+  - name: 'gcr.io/cloud-builders/docker'
     args:
       [
         'build',
@@ -40,7 +40,7 @@ steps:
         'apps/notifications/Dockerfile',
         '.',
       ]
-  - name: 'grc.io/cloud-builders/docker'
+  - name: 'gcr.io/cloud-builders/docker'
     args:
       [
         'push',
@@ -48,7 +48,7 @@ steps:
       ]
 
   #auth
-  - name: 'grc.io/cloud-builders/docker'
+  - name: 'gcr.io/cloud-builders/docker'
     args:
       [
         'build',
@@ -58,7 +58,7 @@ steps:
         'apps/auth/Dockerfile',
         '.',
       ]
-  - name: 'grc.io/cloud-builders/docker'
+  - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'asia-southeast1-docker.pkg.dev/cat-424106/auth/production']
 options:
   logging: CLOUD_LOGGING_ONLY
