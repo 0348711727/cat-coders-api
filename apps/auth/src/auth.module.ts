@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 import { UsersModule } from './users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { LoggerModule } from '@app/common';
+import { HealthModule, LoggerModule } from '@app/common';
 import * as Joi from 'joi';
 import { JwtStrategy } from './strategies/jwt.strategy';
 
@@ -34,6 +34,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       }),
       inject: [ConfigService],
     }),
+    HealthModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],

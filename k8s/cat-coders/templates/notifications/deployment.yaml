@@ -40,5 +40,20 @@ spec:
                 secretKeyRef:
                   name: google
                   key: refreshToken
+            - name: TWILIO_ACCOUNT_SID
+              valueFrom:
+                secretKeyRef:
+                  name: twillio
+                  key: accountSID
+            - name: TWILIO_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: twillio
+                  key: authToken
+            - name: TWILIO_SENDER_PHONE_NUMBER
+              valueFrom:
+                secretKeyRef:
+                  name: twillio
+                  key: senderPhoneNumber
       imagePullSecrets:
         - name: gcr-json-key

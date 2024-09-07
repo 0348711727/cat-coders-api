@@ -8,6 +8,7 @@ import {
   DatabaseModule,
   AUTH_SERVICE,
   PAYMENT_SERVICE,
+  HealthModule,
 } from '@app/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from 'joi';
@@ -57,6 +58,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         inject: [ConfigService],
       },
     ]),
+    HealthModule,
   ],
   controllers: [OrdersController],
   providers: [OrdersService, OrdersRepository],

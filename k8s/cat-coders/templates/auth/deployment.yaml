@@ -18,11 +18,50 @@ spec:
         - image: asia-southeast1-docker.pkg.dev/cat-424106/auth/production
           name: auth
           imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3002
+            - containerPort: 3003
           env:
             - name: MONGO_URI
               valueFrom:
                 secretKeyRef:
                   name: mongodb
                   key: connectionString
+            - name: STRIPE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: stripe
+                  key: apiKey
+            - name: STRIPE_API_VERSION
+              valueFrom:
+                secretKeyRef:
+                  name: stripe
+                  key: apiVersion
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwt
+                  key: jwtSecret
+            - name: JWT_EXPIRATION
+              value: '3600'
+            - name: TWILIO_ACCOUNT_SID
+              valueFrom:
+                secretKeyRef:
+                  name: twillio
+                  key: accountSID
+            - name: TWILIO_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: twillio
+                  key: authToken
+            - name: TWILIO_SENDER_PHONE_NUMBER
+              valueFrom:
+                secretKeyRef:
+                  name: twillio
+                  key: senderPhoneNumber
+            - name: TCP_PORT
+              value: '3002'
+            - name: HTTP_PORT
+              value: '3003'
       imagePullSecrets:
         - name: gcr-json-key

@@ -24,5 +24,23 @@ spec:
                 secretKeyRef:
                   name: mongodb
                   key: connectionString
+            - name: NOTIFICATIONS_HOST
+              value: "notifications"
+            - name: NOTIFICATION_PORT
+              value: "3000"
+            - name: STRIPE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: stripe
+                  key: apiKey
+            - name: STRIPE_API_VERSION
+              valueFrom:
+                secretKeyRef:
+                  name: stripe
+                  key: apiVersion
+            - name: PORT
+              value: '3001'
+          ports:
+            - containerPort: 3001
       imagePullSecrets:
         - name: gcr-json-key

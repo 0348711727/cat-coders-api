@@ -18,11 +18,33 @@ spec:
         - image: asia-southeast1-docker.pkg.dev/cat-424106/orders/production
           name: orders
           imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3004
           env:
             - name: MONGO_URI
               valueFrom:
                 secretKeyRef:
                   name: mongodb
                   key: connectionString
+            - name: PORT
+              value: "3004"
+            - name: AUTH_HOST
+              value: auth-tcp
+            - name: AUTH_PORT
+              value: "3002"
+            - name: PAYMENT_HOST
+              value: payments
+            - name: PAYMENT_PORT
+              value: "3003"
+            - name: STRIPE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: stripe
+                  key: apiKey
+            - name: STRIPE_API_VERSION
+              valueFrom:
+                secretKeyRef:
+                  name: stripe
+                  key: apiVersion
       imagePullSecrets:
         - name: gcr-json-key
